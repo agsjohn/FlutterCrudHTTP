@@ -36,8 +36,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 Future<List<dynamic>> fetchUsers() async {
-  final url = Uri.parse('https://ca8bf909bc8e54bd6dff.free.beeceptor.com/api/users');
-  // final url = Uri.parse('https://crudcrud.com/api/d978b2feffe74264baf3fa98dee5dd84');
+  final url = Uri.parse('https://cae821f268afdae372cb.free.beeceptor.com/api/users/');
   final response = await http.get(url);
   if (response.statusCode == 200) {
     print('Resposta: ${response.body}');
@@ -51,7 +50,7 @@ Future<List<dynamic>> fetchUsers() async {
 }
 
 Future<void> createData(String nome, String sobrenome, String genero, int idade, String email) async {
-  final response = await http.post(Uri.parse('https://ca8bf909bc8e54bd6dff.free.beeceptor.com/api/users/'),
+  final response = await http.post(Uri.parse('https://cae821f268afdae372cb.free.beeceptor.com/api/users/'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -68,7 +67,7 @@ Future<void> createData(String nome, String sobrenome, String genero, int idade,
 }
 
 Future<void> deleteData(String id) async {
-  final response = await http.delete(Uri.parse('https://ca8bf909bc8e54bd6dff.free.beeceptor.com/api/users/$id'));
+  final response = await http.delete(Uri.parse('https://cae821f268afdae372cb.free.beeceptor.com/api/users/$id'));
 
   if (response.statusCode != 200) {
     throw Exception('Failed to delete data');
@@ -98,8 +97,6 @@ class _MyHomePageState extends State<MyHomePage> {
   int idade=0;
   String email="";
 
-  // final _formKey = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,6 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   return ListView.builder(
                     itemCount: data.length,
                     itemBuilder: (context, index) {
+                      ElevatedButton(onPressed: () => null, child: Text("Deletar"));
                       sobrenome = data[index]['sobrenome'];
                       genero = data[index]['genero'];
                       idade = data[index]['idade'];
@@ -169,7 +167,6 @@ class SecondRoute extends State<SegundaJanela> {
 
   @override
   Widget build(BuildContext context) {
-    // Build a Form widget using the _formKey created above.
     return Scaffold(
       appBar: null,
       body: Form(
@@ -255,11 +252,9 @@ class SecondRoute extends State<SegundaJanela> {
               child: 
               ElevatedButton(
                 onPressed: () {
-                  // Validate returns true if the form is valid, or false otherwise.
                   if (_formKey.currentState!.validate()) {
-                    // If the form is valid, display a snackbar. In the real world,
-                    // you'd often call a server or save the information in a database.
                     createData(nome, sobrenome, genero, idade, email);
+                    setState(() {} );
                     Navigator.pop(context);
                   }
                 },
