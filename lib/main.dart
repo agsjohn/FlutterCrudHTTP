@@ -9,7 +9,7 @@ void main() {
 }
 
 const String link =
-    "https://ca8852438d6058dcff62.free.beeceptor.com/api/users/";
+    "https://ca4c0b625f83879e547a.free.beeceptor.com/api/users/";
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
